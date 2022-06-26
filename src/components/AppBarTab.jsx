@@ -9,12 +9,13 @@ const styles = StyleSheet.create({
   }
 })
 
-const AppBarTab = ({ text, to }) => {
-  return <Pressable>
-    <Link to={to}>
+const AppBarTab = ({ text, to, ...props }) => {
+
+  return (
+    <Link to={to} {...props}>
       <Text fontSize='heading' fontWeight='bold' style={styles.text} >{text}</Text>
     </Link>
-  </Pressable>
+  )
 }
 
 export default AppBarTab
