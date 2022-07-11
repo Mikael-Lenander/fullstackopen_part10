@@ -31,8 +31,8 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
   const textStyle = [
     styles.text,
     color === 'textSecondary' && styles.colorTextSecondary,
-    color === 'primary' && styles.colorPrimary,
-    {color: color === 'white' && 'white'},
+    { color: color === 'primary' && styles.colorPrimary },
+    { color: color === 'white' && 'white'},
     fontSize === 'subheading' && styles.fontSizeSubheading,
     fontSize === 'heading' && styles.fontSizeHeading,
     fontWeight === 'bold' && styles.fontWeightBold,

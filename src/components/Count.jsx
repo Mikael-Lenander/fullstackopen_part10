@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const Count = ({ count, text, format=false }) => {
-  return <View style={styles.container}>
+const Count = ({ count, text, format=false, ...props }) => {
+  return <View style={styles.container} {...props}>
     <Text fontSize='subheading' fontWeight='bold'>{numeral(count).format(format && '0.0a')}</Text>
     <Text color='textSecondary'>{text}</Text>
   </View>

@@ -2,14 +2,9 @@ import { View, Image, StyleSheet } from 'react-native'
 import Text from './Text'
 import theme from '../theme'
 import Count from './Count'
+import Card from './Card'
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    padding: 10,
-    marginLeft: 8,
-    marginRight: 8
-  },
+export const styles = StyleSheet.create({
   tinyLogo: {
     width: 50,
     height: 50,
@@ -30,29 +25,35 @@ const styles = StyleSheet.create({
   countContainer: {
     ...theme.flexRow,
     justifyContent: 'space-around'
+  },
+  upperContainer: {
+    ...theme.flexRow,
+    justifyContent: 'flex-start'
   }
 })
 
-const RepositoryItem = ({ item }) => {
-  return <View style={styles.container}>
-    <View style={[theme.flexRow, { justifyContent: 'flex-start' } ]}>
-      <Image style={styles.tinyLogo} source={{ uri: item.ownerAvatarUrl }}/>
-      <View style={styles.infoContainer}>
-        <Text fontWeight='bold' >{item.fullName}</Text>
-        <Text>{item.description}</Text>
-        <View style={styles.languageContainer}>
-          <Text color='white'>{item.language}</Text>
+const RepositoryItem = ({ item, children }) => {
+  return (
+    <Card testID="repositoryItem">
+        <View style={styles.upperContainer}>
+          <Image style={styles.tinyLogo} source={{ uri: item.ownerAvatarUrl }}/>
+          <View style={styles.infoContainer}>
+            <Text fontWeight='bold' >{item.fullName}</Text>
+            <Text>{item.description}</Text>
+            <View style={styles.languageContainer}>
+              <Text color='white'>{item.language}</Text>
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
-    <View style={styles.countContainer} >
-      <Count text='Stars' count={item.stargazersCount} format />
-      <Count text='Forks' count={item.forksCount} format />
-      <Count text='Reviews' count={item.reviewCount} />
-      <Count text='Rating' count={item.ratingAverage} />
-    </View>
-
-  </View>
+        <View style={styles.countContainer} >
+          <Count testID='Stars' text='Stars' count={item.stargazersCount} format />
+          <Count testID='Forks' text='Forks' count={item.forksCount} format />
+          <Count testID='Reviews' text='Reviews' count={item.reviewCount} />
+          <Count testID='Rating' text='Rating' count={item.ratingAverage} />
+        </View>
+        {children}
+      </Card>
+  )
 }
 
 export default RepositoryItem
